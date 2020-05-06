@@ -12,6 +12,22 @@ class PhotoFilterViewController: UIViewController {
 	
     var originalImage: UIImage? {
         didSet {
+            guard let originalImage = originalImage else { return }
+            
+            var scaledSize = imageView.bounds.size
+            let scale: CGFloat = UIScreen.main.scale
+            
+            scaledSize = CGSize(width: scaledSize.width*scale,
+                                height: scaledSize.height*scale)
+            
+            let scaledUIImage = originalImage.imageByScaling(toSize: scaledSize)
+            
+            scaledImage = scaledUIImage
+        }
+    }
+    
+    var scaledImage: UIImage? {
+        didSet {
             updateImage()
         }
     }
@@ -33,7 +49,7 @@ class PhotoFilterViewController: UIViewController {
     private let filter = CIFilter.colorControls()
     
     private func updateImage() {
-        if let originalImage = originalImage {
+        if let originalImage = scaledImage {
             imageView.image = image(byFiltering: originalImage)
         } else {
             imageView.image = nil
