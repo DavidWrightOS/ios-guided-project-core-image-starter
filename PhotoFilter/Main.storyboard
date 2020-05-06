@@ -31,59 +31,76 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3L8-Ns-ZLl" userLabel="Bottom Stack View">
                                                 <rect key="frame" x="16" y="8" width="343" height="274"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W46-C5-AVq" userLabel="Brightness Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W46-C5-AVq" userLabel="Brightness Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aj5-vS-uD3">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aj5-vS-uD3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zDC-OB-nYX" userLabel="Brightness Slider">
+                                                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zDC-OB-nYX" userLabel="Brightness Slider">
                                                                 <rect key="frame" x="88" y="0.0" width="257" height="21.333333333333332"/>
                                                                 <connections>
-                                                                    <action selector="brightnessChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="R5c-9W-xGT"/>
+                                                                    <action selector="filterSettingsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="TYw-Pf-C5W"/>
                                                                 </connections>
                                                             </slider>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-BK-Hv7" userLabel="Contrast Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-BK-Hv7" userLabel="Contrast Stack View">
                                                         <rect key="frame" x="0.0" y="40.333333333333371" width="343" height="20.333333333333329"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Contrast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om4-32-DXg">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Contrast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om4-32-DXg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-mt-jU4" userLabel="Contrast Slider">
+                                                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-mt-jU4" userLabel="Contrast Slider">
                                                                 <rect key="frame" x="88" y="0.0" width="257" height="21.333333333333332"/>
                                                                 <connections>
-                                                                    <action selector="contrastChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wdg-MB-Ixs"/>
+                                                                    <action selector="filterSettingsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Z1d-vl-pt6"/>
                                                                 </connections>
                                                             </slider>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xga-tt-xR7" userLabel="Saturation Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xga-tt-xR7" userLabel="Saturation Stack View">
                                                         <rect key="frame" x="0.0" y="80.666666666666629" width="343" height="20.333333333333329"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Saturation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-iN-yQy">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Saturation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-iN-yQy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="20.333333333333332"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-an-xG5" userLabel="Saturation Slider">
+                                                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="0ph-an-xG5" userLabel="Saturation Slider">
                                                                 <rect key="frame" x="88" y="0.0" width="257" height="21.333333333333332"/>
                                                                 <connections>
-                                                                    <action selector="saturationChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="xr7-Pb-Txz"/>
+                                                                    <action selector="filterSettingsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Mud-92-yaa"/>
+                                                                </connections>
+                                                            </slider>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-hs-C0o" userLabel="Blur Stack View">
+                                                        <rect key="frame" x="0.0" y="120.99999999999999" width="343" height="20.333333333333329"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Blur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIQ-7h-Pra">
+                                                                <rect key="frame" x="0.0" y="0.0" width="30.333333333333332" height="20.333333333333332"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="kNH-uf-r3H" userLabel="Saturation Slider">
+                                                                <rect key="frame" x="36.333333333333343" y="0.0" width="308.66666666666663" height="21.333333333333332"/>
+                                                                <connections>
+                                                                    <action selector="filterSettingsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xyh-mE-lSe"/>
                                                                 </connections>
                                                             </slider>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbg-Oj-7Ub">
-                                                        <rect key="frame" x="0.0" y="121" width="343" height="60"/>
+                                                        <rect key="frame" x="0.0" y="161.33333333333337" width="343" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="WX5-ha-JWa"/>
                                                         </constraints>
@@ -93,7 +110,7 @@
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dn1-cb-8J9" userLabel="Spacer View">
-                                                        <rect key="frame" x="0.0" y="201" width="343" height="73"/>
+                                                        <rect key="frame" x="0.0" y="241.33333333333334" width="343" height="32.666666666666657"/>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -136,6 +153,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="blurSlider" destination="kNH-uf-r3H" id="KAg-re-Z1I"/>
                         <outlet property="brightnessSlider" destination="zDC-OB-nYX" id="NIW-M6-yfq"/>
                         <outlet property="contrastSlider" destination="fcb-mt-jU4" id="EST-ev-qrR"/>
                         <outlet property="imageView" destination="WLS-Nm-1BZ" id="kN0-JO-lMa"/>

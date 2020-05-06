@@ -8,6 +8,7 @@ class PhotoFilterViewController: UIViewController {
 	@IBOutlet weak var brightnessSlider: UISlider!
 	@IBOutlet weak var contrastSlider: UISlider!
 	@IBOutlet weak var saturationSlider: UISlider!
+    @IBOutlet weak var blurSlider: UISlider!
 	@IBOutlet weak var imageView: UIImageView!
 	
     var originalImage: UIImage? {
@@ -32,6 +33,10 @@ class PhotoFilterViewController: UIViewController {
         }
     }
     
+    private let context = CIContext() // For better performance, only create one CIContext and reuse it throughout the class
+    private let colorControlsFilter = CIFilter.colorControls()
+    private let blurFilter = CIFilter.gaussianBlur()
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
@@ -45,12 +50,9 @@ class PhotoFilterViewController: UIViewController {
         originalImage = imageView.image
 	}
     
-    private let context = CIContext() // For better performance, only create one CIContext and reuse it throughout the class
-    private let filter = CIFilter.colorControls()
-    
     private func updateImage() {
-        if let originalImage = scaledImage {
-            imageView.image = image(byFiltering: originalImage)
+        if let scaledImage = scaledImage {
+            imageView.image = image(byFiltering: scaledImage)
         } else {
             imageView.image = nil
         }
@@ -58,14 +60,17 @@ class PhotoFilterViewController: UIViewController {
     
     private func image(byFiltering inputImage: CIImage) -> UIImage {
                 
-        filter.inputImage = inputImage
-        filter.saturation = saturationSlider.value
-        filter.brightness = brightnessSlider.value
-        filter.contrast = contrastSlider.value
+        colorControlsFilter.inputImage = inputImage
+        colorControlsFilter.saturation = saturationSlider.value
+        colorControlsFilter.brightness = brightnessSlider.value
+        colorControlsFilter.contrast = contrastSlider.value
         
-        guard let outputImage = filter.outputImage else { return originalImage! }
+        blurFilter.inputImage = colorControlsFilter.outputImage?.clampedToExtent()
+        blurFilter.radius = blurSlider.value
         
-        guard let renderedImage = context.createCGImage(outputImage, from: outputImage.extent) else { return originalImage! }
+        guard let outputImage = blurFilter.outputImage else { return originalImage! }
+        
+        guard let renderedImage = context.createCGImage(outputImage, from: inputImage.extent) else { return originalImage! }
         
         return UIImage(cgImage: renderedImage)
     }
@@ -99,7 +104,7 @@ class PhotoFilterViewController: UIViewController {
             
             PHPhotoLibrary.shared().performChanges({
                 PHAssetCreationRequest.creationRequestForAsset(from: processedImage)
-            }) { (success, error) in
+            }) { success, error in
                 if let error = error {
                     print("Error saving photo: \(error)")
                     return
@@ -114,24 +119,19 @@ class PhotoFilterViewController: UIViewController {
     
     private func presentSuccessfulSaveAlert(){
         let alert = UIAlertController(title: "Photo Saved!", message: "The photo has been saved to your Photo Library!", preferredStyle: .alert)
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
         present(alert, animated: true, completion: nil)
     }
 	
 
 	// MARK: Slider events
-	
-	@IBAction func brightnessChanged(_ sender: UISlider) {
+    
+    @IBAction func filterSettingsChanged(_ sender: Any) {
         updateImage()
-	}
-	
-	@IBAction func contrastChanged(_ sender: Any) {
-        updateImage()
-	}
-	
-	@IBAction func saturationChanged(_ sender: Any) {
-        updateImage()
-	}
+    }
+    
 }
 
 extension PhotoFilterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
