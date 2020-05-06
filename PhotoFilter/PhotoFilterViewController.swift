@@ -10,19 +10,32 @@ class PhotoFilterViewController: UIViewController {
 	@IBOutlet weak var saturationSlider: UISlider!
 	@IBOutlet weak var imageView: UIImageView!
 	
-    var originalImage: UIImage?
+    var originalImage: UIImage? {
+        didSet {
+            updateImage()
+        }
+    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        let filter = CIFilter.gaussianBlur() // built-in filter from Apple
-        // Used to need to call this:
-        // let filter = CIFilter(name: "CIGaussianBlur")
+//        let filter = CIFilter.gaussianBlur() // built-in filter from Apple
+//        // Used to need to call this:
+//        // let filter = CIFilter(name: "CIGaussianBlur")
+//
+//        print(filter)
+//        print(filter.attributes)
         
-        print(filter)
-        print(filter.attributes)
-        
+        originalImage = imageView.image
 	}
+    
+    private func updateImage() {
+        if let originalImage = originalImage {
+            imageView.image = originalImage
+        } else {
+            imageView.image = nil
+        }
+    }
     
     private func presentImagePickerController() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
